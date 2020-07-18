@@ -1,0 +1,83 @@
+convert_alpha() - 
+                  change the pixel format of an image including per pixel alphas convert_alpha(Surface) -> Surface convert_alpha() -> Surface
+                  Creates a new copy of the surface with the desired pixel format. The new surface will be in a format suited for quick blitting 
+                  to the given format with per pixel alpha. 
+                  If no surface is given, the new surface will be optimized for blitting to the current display.
+
+                  Unlike the Surface.convert() method, the pixel format for the new image will not be exactly the same as the requested source,          
+                  but it will be optimized for fast alpha blitting to the destination.
+
+
+
+Rigid Bodies (pymunk.Body) - 
+                             class pymunk.Body(mass=0, moment=0, body_type=<class 'CP_BODY_TYPE_DYNAMIC'>)
+                             Bases: pymunk._pickle.PickleMixin, object
+
+                             A rigid body
+
+                             Use forces to modify the rigid bodies if possible. This is likely to be the most stable.
+                             Modifying a body’s velocity shouldn’t necessarily be avoided, but applying large changes can cause strange results in the simulation. Experiment freely, but be                               warned.
+                             Don’t modify a body’s position every step unless you really know what you are doing. Otherwise you’re likely to get the position/velocity badly out of sync. 
+                             A Body can be copied and pickled. Sleeping bodies that are copied will be awake in the fresh copy. When a Body is copied any spaces, shapes or constraints                                    attached to the body will not be copied.
+
+
+
+pymunk.moment_for_circle(mass, inner_radius, outer_radius, offset=(0, 0)) - 
+                                                                             Calculate the moment of inertia for a hollow circle
+
+                                                                             inner_radius and outer_radius are the inner and outer diameters. (A solid circle has an inner diameter of 0)
+
+
+
+
+apply_impulse_at_local_point(impulse, point=(0, 0)) -
+                                                        Add the local impulse impulse to body as if applied from the body local point.
+
+
+
+                                                        -   This module contain the Vec2d class that is used in all of pymunk when a vector is needed.
+
+					                The Vec2d class is used almost everywhere in pymunk for 2d coordinates and vectors, for example to define gravity vector in a space.                                                          However, pymunk is smart enough to convert tuples or tuple like objects to Vec2ds so you usually do not need to explicitly do                                                         conversions if you happen to have a tuple:
+
+                                                        >>> import pymunk
+                                                        >>> space = pymunk.Space()
+                                                        >>> space.gravity
+                                                        Vec2d(0.0, 0.0)
+                                                        >>> space.gravity = 3,5
+                                                        >>> space.gravity
+                                                        Vec2d(3.0, 5.0)
+                                                        >>> space.gravity += 2,6
+                                                        >>> space.gravity
+
+
+                                                        Vec2d(5.0, 11.0)
+
+class pymunk.Circle(body, radius, offset=(0, 0))  - 
+                                                      Bases: pymunk.shapes.Shape
+
+                                                      A circle shape defined by a radius
+
+                                                      This is the fastest and simplest collision shape
+
+                                                      __init__(body, radius, offset=(0, 0))[source]
+                                                      body is the body attach the circle to, offset is the offset from the body’s center of gravity in body local coordinates.
+
+                                                      It is legal to send in None as body argument to indicate that this shape is not attached to a body. However, you must attach it to a                                                       body before adding the shape to a space or used for a space shape query.
+
+
+elasticity - 
+                Elasticity of the shape.
+
+                A value of 0.0 gives no bounce, while a value of 1.0 will give a ‘perfect’ bounce. However due to inaccuracies in the simulation using 1.0 or greater is not recommended.
+
+
+friction - 
+                Friction coefficient.
+
+                Pymunk uses the Coulomb friction model, a value of 0.0 is frictionless.
+
+                A value over 1.0 is perfectly fine.
+
+                Some real world example values from Wikipedia (Remember that it is what looks good that is important, not the exact value).
+
+
